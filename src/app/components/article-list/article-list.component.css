@@ -1,0 +1,95 @@
+/* Style global de la container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Style pour l'en-tête */
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .add-article-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px; /* Décalage par rapport au titre */
+    margin-left: 70%;
+  }
+  
+  .add-article-btn i {
+    margin-right: 8px;
+  }
+  
+  /* Style pour la grille des articles */
+  .article-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  /* Style pour les cartes d'article */
+  .article-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.333% - 20px); /* Trois cartes par ligne avec espace entre */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  .article-card h2 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    text-align: center; /* Centrer le titre */
+  }
+  
+  .article-card p {
+    margin: 0 0 15px;
+  }
+  
+  /* Style pour les boutons dans la carte */
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Centrer les boutons */
+  }
+  
+  .button-group button {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-group button i {
+    margin-right: 5px;
+  }
+  
+  .btn-detail {
+    color: #007bff;
+  }
+  
+  .btn-edit {
+    color: #28a745;
+  }
+  
+  .btn-delete {
+    color: #dc3545;
+  }
+  

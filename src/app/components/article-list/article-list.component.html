@@ -1,1 +1,26 @@
-<p>article-list works!</p>
+<div>
+  <button (click)="showAddForm()">Ajouter un Article</button>
+  
+  <!-- Formulaire d'ajout/édition d'article -->
+  <div *ngIf="showForm">
+    <form [formGroup]="addForm" (ngSubmit)="addPost()">
+      <label for="title">Titre</label>
+      <input id="title" formControlName="title">
+      
+      <label for="body">Corps</label>
+      <textarea id="body" formControlName="body"></textarea>
+      
+      <button type="submit">Ajouter</button>
+      <button type="button" (click)="hideForm()">Annuler</button>
+    </form>
+  </div>
+  
+  <!-- Liste des articles -->
+  <ul>
+    <li *ngFor="let article of articles">
+      {{ article.title }}
+      <button (click)="onEditArticle(article.id)">Éditer</button>
+      <button (click)="onDeleteArticle(article.id)">Supprimer</button>
+    </li>
+  </ul>
+</div>

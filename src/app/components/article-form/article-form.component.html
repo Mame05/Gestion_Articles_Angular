@@ -1,1 +1,56 @@
-<p>article-form works!</p>
+
+<!--<div class="container">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" />
+        <div *ngIf="articleForm.controls['title'].invalid && (articleForm.controls['title'].dirty || articleForm.controls['title'].touched)">
+          <div *ngIf="articleForm.controls['title'].errors?.['required']">Title is required.</div>
+          <div *ngIf="articleForm.controls['title'].errors?.['minlength']">Title must be at least 3 characters long.</div>
+        </div>
+      </div>
+  
+      <div>
+        <label for="body">Body</label>
+        <textarea id="body" formControlName="body"></textarea>
+        <div *ngIf="articleForm.controls['body'].invalid && (articleForm.controls['body'].dirty || articleForm.controls['body'].touched)">
+          <div *ngIf="articleForm.controls['body'].errors?.['required']">Body is required.</div>
+          <div *ngIf="articleForm.controls['body'].errors?.['minlength']">Body must be at least 10 characters long.</div>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="articleForm.invalid">Save</button>
+    </form>
+  </div>-->
+  <!--<div class="container">
+    <h1>{{ isEditing ? 'Modifier l\'Article' : 'Ajouter un Article' }}</h1>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Titre</label>
+        <input id="title" formControlName="title" type="text" />
+      </div>
+      <div>
+        <label for="body">Corps</label>
+        <textarea id="body" formControlName="body"></textarea>
+      </div>
+      <button type="submit">{{ isEditing ? 'Modifier' : 'Ajouter' }}</button>
+    </form>
+  </div>-->
+  <div class="form-container">
+    <h1>{{ isEditing ? 'Modifier' : 'Ajouter' }} un Article</h1>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="title">Title:</label>
+        <input id="title" formControlName="title">
+      </div>
+      <div>
+        <label for="body">Body:</label>
+        <textarea id="body" formControlName="body"></textarea>
+      </div>
+      <button type="submit">{{ isEditing ? 'Modifier' : 'Ajouter' }}</button>
+      <button type="button" (click)="closeForm()">Annuler</button>
+    </form>
+  </div>
+  
+   
+  
