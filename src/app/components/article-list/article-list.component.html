@@ -1,26 +1,101 @@
-<div>
-  <button (click)="showAddForm()">Ajouter un Article</button>
+<!--<div class="container mt-4">
+  <button class="btn btn-primary mb-3" (click)="showAddForm()"><i class="fas fa-plus me-2"></i>Ajouter un article</button>-->
   
   <!-- Formulaire d'ajout/édition d'article -->
-  <div *ngIf="showForm">
-    <form [formGroup]="addForm" (ngSubmit)="addPost()">
-      <label for="title">Titre</label>
-      <input id="title" formControlName="title">
-      
-      <label for="body">Corps</label>
-      <textarea id="body" formControlName="body"></textarea>
-      
-      <button type="submit">Ajouter</button>
-      <button type="button" (click)="hideForm()">Annuler</button>
-    </form>
-  </div>
+  <!--<div *ngIf="showForm" class="card p-4 mb-4">
+    <div class="card-body">
+      <form [formGroup]="addForm" (ngSubmit)="addPost()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Titre</label>
+          <input id="title" formControlName="title" class="form-control">
+        </div>
+        
+        <div class="mb-3">
+          <label for="body" class="form-label">Corps</label>
+          <textarea id="body" formControlName="body" class="form-control"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-success">{{edit ? 'Ajouter' : 'Ajouter'}}</button>
+        <button type="button" class="btn btn-secondary" (click)="hideForm()">Annuler</button>
+      </form>
+    </div>
+  </div>-->
   
   <!-- Liste des articles -->
-  <ul>
-    <li *ngFor="let article of articles">
-      {{ article.title }}
-      <button (click)="onEditArticle(article.id)">Éditer</button>
-      <button (click)="onDeleteArticle(article.id)">Supprimer</button>
-    </li>
-  </ul>
+  <!--<h1>Liste des Articles</h1>
+  <div *ngIf="articles.length === 0" class="alert alert-warning">No articles found.</div>
+  
+  <div class="row">
+    <div *ngFor="let article of articles" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ article.title }}</h5>
+          <p class="card-text">{{ article.body }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-info" [routerLink]="['/article', article.id]">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="btn btn-warning" (click)="onEditArticle(article.id)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-danger" (click)="onDeleteArticle(article.id)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <button class="btn btn-primary add-article-btn" (click)="showAddForm()">
+      <i class="fas fa-plus me-2"></i> Ajouter un Article
+    </button>
+  </div>
+
+  <!-- Formulaire d'ajout/édition d'article -->
+  <div *ngIf="showForm" class="card p-4 mb-4">
+    <form [formGroup]="addForm" (ngSubmit)="addPost()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre</label>
+        <input id="title" formControlName="title" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="body" class="form-label">Corps</label>
+        <textarea id="body" formControlName="body" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success me-2">{{edit ? 'Modifier' : 'Ajouter'}}</button>
+      <button type="button" class="btn btn-secondary" (click)="hideForm()">Annuler</button>
+    </form>
+  </div>
+
+  <!-- Liste des articles -->
+  <h1>Liste des Articles</h1>
+  <div *ngIf="articles.length === 0" class="alert alert-warning">No articles found.</div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let article of articles">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ article.title }}</h5>
+          <p class="card-text">{{ article.body }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-outline-primary" [routerLink]="['/article', article.id]">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="btn btn-outline-warning" (click)="onEditArticle(article.id)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-outline-danger" (click)="onDeleteArticle(article.id)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

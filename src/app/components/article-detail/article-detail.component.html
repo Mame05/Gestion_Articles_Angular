@@ -1,1 +1,26 @@
-<p>article-detail works!</p>
+<div class="container mt-5">
+    <!-- Détails de l'article -->
+    <div *ngIf="article" class="card mb-3">
+      <div class="card-body">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-text">{{ article.body }}</p>
+      </div>
+    </div>
+
+    <h1>commentaires</h1>
+  
+    <!-- Commentaires de l'article -->
+    <div *ngIf="comments.length > 0" class="row">
+      <div *ngFor="let comment of comments" class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ comment.name }}</h5>
+            <p class="card-text">{{ comment.body }}</p>
+            <p class="card-text">By:{{ comment.email}}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
