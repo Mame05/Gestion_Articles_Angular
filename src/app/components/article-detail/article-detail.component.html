@@ -5,6 +5,19 @@
       <p>{{ article.body }}</p>
     </div>
   
-   
+    <h1>Commentaires</h1>
+  
+    <!-- Commentaires de l'article -->
+    <div *ngIf="comments.length > 0" class="comments-section">
+      <div *ngFor="let comment of comments" class="comment">
+        <div class="comment-header">
+          <h5>{{ comment.name }}</h5>
+          <p class="comment-author">By: {{ comment.email }}</p>
+        </div>
+        <p class="comment-body">{{ comment.body }}</p>
+      </div>
+    </div>
+  </div>
+  
 
   
