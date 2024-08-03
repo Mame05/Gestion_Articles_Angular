@@ -1,17 +1,4 @@
-/*import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-article-detail',
-  standalone: true,
-  imports: [],
-  templateUrl: './article-detail.component.html',
-  styleUrl: './article-detail.component.css'
-})
-export class ArticleDetailComponent {
-
-}*/
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { CommonModule } from '@angular/common';
@@ -36,7 +23,7 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit(): void {
     const articleId = +this.route.snapshot.paramMap.get('id')!;
     this.loadArticle(articleId);
-    this.loadComments(articleId);
+    
   }
 
   loadArticle(id: number): void {
@@ -50,14 +37,7 @@ export class ArticleDetailComponent implements OnInit {
     );
   }
 
-  loadComments(postId: number): void {
-    this.articleService.getComments(postId).subscribe(
-      data => {
-        this.comments = data;
-      },
-      error => {
-        console.error('Erreur lors de la récupération des commentaires', error);
-      }
-    );
-  }
+ 
 }
+
+

@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ArticleService } from '../../services/article.service';
-import { Article } from '../post';
+import { Article } from '../post'; // Importez l'interface Article
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, RouterLink ,} from '@angular/router';
-import { error } from 'console';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ArticleFormComponent } from '../article-form/article-form.component';
 
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports:  [CommonModule, HttpClientModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, HttpClientModule, RouterLink, ArticleFormComponent],
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
@@ -18,53 +17,37 @@ export class ArticleListComponent implements OnInit {
   articles: Article[] = [];
   showForm: boolean = false;
   selectedArticleId: number | null = null;
-  addForm: FormGroup;
-  edit=false;
-  
+
   constructor(
     private articleService: ArticleService,
-    private fb: FormBuilder,
-    private route:ActivatedRoute
-  ) {
-    this.addForm = this.fb.group({
-      title: ['', Validators.required],
-      body: ['', Validators.required]
-    });
-  }
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.loadArticles();
 
-    this.route.params.subscribe(params=>{
-      const id=params['id'];
-      if(id){
-        this.edit=true;
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
         this.selectedArticleId = +id;
-        this.onEditArticle(this.selectedArticleId);
+        this.showForm = true;
       }
     });
   }
 
   loadArticles(): void {
-    this.articleService.getArticles().subscribe(data => {
-      this.articles = data;
-    });
+    this.articleService.getArticles().subscribe(
+      data => {
+        this.articles = data;
+      },
+      error => {
+        console.error('Erreur lors du chargement des articles', error);
+      }
+    );
   }
 
   showAddForm(): void {
     this.selectedArticleId = null;
-    this.showForm = true;
-    
-  }
-
-  onEditArticle(articleId: number): void {
-    this.articleService.getArticle(articleId).subscribe(data=>{
-      this.addForm.patchValue(data);
-    },error=>{
-      console.error('Il t a une erreur:',error)
-    });
-    
-    this.selectedArticleId = articleId;
     this.showForm = true;
   }
 
@@ -73,32 +56,31 @@ export class ArticleListComponent implements OnInit {
     this.selectedArticleId = null;
   }
 
-  addPost(): void {
-    if(this.edit && this.selectedArticleId!==null){
-      this.articleService.updateArticle(this.selectedArticleId,this.addForm.value).subscribe(
-        ()=>{
-          this. loadArticles();
-
-        },error=>{
-          console.error('Erreur de modificatoion',error);
-        }
-      );     
-    } else if (this.addForm.valid) {
-      const newArticle: Article = this.addForm.value;
-      console.log('Article à ajouter:', newArticle);
-      this.articleService.addArticle(newArticle).subscribe((article: Article) => {
-        this.articles.unshift(article); // Ajouter le nouvel article au début de la liste
-        this.addForm.reset(); // Réinitialiser le formulaire
-      });
+  onArticleAdded(article: Article): void {
+    if (this.selectedArticleId) {
+      // Mise à jour de l'article existant
+      const index = this.articles.findIndex(a => a.id === this.selectedArticleId);
+      if (index !== -1) {
+        this.articles[index] = article;
+      }
+    } else {
+      // Ajouter le nouvel article en haut de la liste
+      this.articles.unshift(article);
     }
+    this.hideForm();
+  }
+
+  onEditArticle(articleId: number): void {
+    this.selectedArticleId = articleId;
+    this.showForm = true;
   }
 
   onDeleteArticle(articleId: number): void {
     this.articleService.deleteArticle(articleId).subscribe(
       () => {
-        this.loadArticles(); // Rafraîchir la liste après suppression
+        this.articles = this.articles.filter(article => article.id !== articleId);
       },
-      (error) => {
+      error => {
         console.error('Erreur lors de la suppression de l\'article', error);
       }
     );

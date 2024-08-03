@@ -1,42 +1,55 @@
-/* Style pour le formulaire */
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  div {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+form {
+  background: #f8f9fa; /* Couleur de fond douce */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 20px; /* Espacement intérieur */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet de profondeur */
+  max-width: 600px; /* Largeur maximale */
+  margin: 20px auto; /* Centrer le formulaire */
+}
+
+.form-label {
+  font-weight: bold; /* Texte en gras pour les labels */
+  color: #343a40; /* Couleur de texte sombre */
+}
+
+.form-control {
+  border: 1px solid #ced4da; /* Bordure grise */
+  border-radius: 4px; /* Coins légèrement arrondis */
+  padding: 10px; /* Espacement intérieur */
+  transition: border-color 0.3s; /* Transition douce pour les bordures */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Couleur de bordure en focus */
+  box-shadow: none; /* Désactiver l'ombre par défaut */
+}
+
+.btn {
+  padding: 10px 20px; /* Espacement intérieur des boutons */
+  border-radius: 4px; /* Coins arrondis */
+  transition: background-color 0.3s; /* Transition douce pour la couleur de fond */
+}
+
+.btn-success {
+  background-color: #28a745; /* Couleur verte */
+  border-color: #28a745; /* Bordure verte */
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Couleur verte foncée au survol */
+  border-color: #1e7e34; /* Bordure verte foncée au survol */
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Couleur grise */
+  border-color: #6c757d; /* Bordure grise */
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Couleur grise foncée au survol */
+  border-color: #545b62; /* Bordure grise foncée au survol */
+}
+
+.me-2 {
+  margin-right: 8px; /* Espacement entre les boutons */
+}
