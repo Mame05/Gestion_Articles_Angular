@@ -1,0 +1,16 @@
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input id="title" formControlName="title" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="body" class="form-label">Corps</label>
+      <textarea id="body" formControlName="body" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success me-2">{{isEditing ? 'Modifier' : 'Ajouter'}}</button>
+    <button type="button" class="btn btn-secondary" (click)="closeForm()">Annuler</button>
+  </form>
+  
+  
+   
+  
